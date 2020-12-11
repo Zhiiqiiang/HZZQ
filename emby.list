@@ -1,4 +1,4 @@
 # > emby
-IP-CIDR,38.94.108.180/32,no-resolve
-DOMAIN,firebaselogging-pa.googleapis.com
+#IP-CIDR,38.94.108.180/32,no-resolve
+#DOMAIN,firebaselogging-pa.googleapis.com
 DOMAIN,emby.nexitally.com
