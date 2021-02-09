@@ -1,7 +1,11 @@
 # > emby
-#IP-CIDR,38.94.108.180/32,no-resolve
 #DOMAIN,firebaselogging-pa.googleapis.com
+# > Nexitally
+#IP-CIDR,38.94.108.180/32,no-resolve
 DOMAIN,emby.nexitally.com
+# > Nyancat
 DOMAIN,emby.nyancat.net
+DOMAIN,servers.xeton.dev
+# > Plus
 DOMAIN,emby.plusmedia.site
-DOMAIN,bgp.emby.mickeycloud.com
+DOMAIN,emby-cf.plusmedia.site
