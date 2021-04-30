@@ -13,4 +13,6 @@ DOMAIN,emby.plusmedia.site
 DOMAIN,emby-cf.plusmedia.site 
 
 # > 流媒体pornemby服务器
-DOMAIN,aga.pornemby.club
+DOMAIN,pornemby.club
+DOMAIN,us.pornemby.club
+DOMAIN,hk.pornemby.club
