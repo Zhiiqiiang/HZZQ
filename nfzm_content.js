@@ -1,5 +1,5 @@
 /* 
-nfzm_content = type=http-response,pattern=^http:\//api.infzm.com\/mobile\/contents\/.*?user=19976699850@infzm.com,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/litieyin/AD_VIP/main/Script/nfzm/contents.js,script-update-interval=0
+nfzm_content = type=http-response,pattern=^http:\//api.infzm.com\/mobile\/contents\/.*?user=19976699850@infzm.com,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/Zhiiqiiang/HZZQ/master/nfzm_content.js,script-update-interval=0
 
 hostname = api.infzm.com
 
