@@ -1,5 +1,5 @@
 /* 
-nfzm_user = type=http-response,pattern=^http:\//api.infzm.com\/mobile\/user\?&platform,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/litieyin/AD_VIP/main/Script/nfzm/user.js,script-update-interval=0
+nfzm_user = type=http-response,pattern=^http:\//api.infzm.com\/mobile\/user\?&platform,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/Zhiiqiiang/HZZQ/master/nfzm_user.js,script-update-interval=0
 
 hostname = api.infzm.com
 
