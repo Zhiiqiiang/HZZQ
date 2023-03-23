@@ -9,3 +9,8 @@ payload:
   - DOMAIN-SUFFIX, intercom.io
   - DOMAIN-SUFFIX,openai.com
   - DOMAIN-SUFFIX,api.openai.com
+  - IP-CIDR,104.196.64.0/18
+  - IP-CIDR,35.224.16.0/20
+  - IP-CIDR,35.192.0.0/12
+  - IP-CIDR,35.208.0.0/13
+  - IP-CIDR,35.224.0.0/16
