@@ -1,0 +1,6 @@
+
+payload:
+# > AI助手
+  - DOMAIN-SUFFIX,openrouter.ai
+  - DOMAIN-SUFFIX,open.cherryin.ai
+  - DOMAIN-SUFFIX,api.302.ai
