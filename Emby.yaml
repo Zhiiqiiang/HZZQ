@@ -1,8 +1,4 @@
 
 payload:
 
-  - DOMAIN-SUFFIX,emby2.misakaf.org
-  - DOMAIN-SUFFIX,push-kr.misakaf.org
-  - IP-CIDR,102.223.180.108/32
-  - DOMAIN-SUFFIX,embyvip.misakaf.org
-  - DOMAIN-SUFFIX,micu.hk
+  - DOMAIN-SUFFIX,media.micu.hk
