@@ -1,7 +1,5 @@
-# > 流媒体misakaf服务器
-DOMAIN-SUFFIX,emby2.misakaf.org
-DOMAIN-SUFFIX,push-kr.misakaf.org
-IP-CIDR,102.223.180.108/32
-DOMAIN-SUFFIX,embyvip.misakaf.org
 # > 流媒体micu服务器
 DOMAIN-SUFFIX,micu.hk
+DOMAIN-SUFFIX,media.micu.hk
+DOMAIN-SUFFIX,tv.micu.hk
+DOMAIN-SUFFIX,tv1.micu.hk
