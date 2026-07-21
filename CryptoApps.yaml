@@ -37,11 +37,6 @@ payload:
   # ===== Bybit =====
   - DOMAIN-SUFFIX,bybit.com                  # 主域
   - DOMAIN-SUFFIX,bybit-aws.com              # App 埋点/监控域（社区抓包）
-  - DOMAIN-SUFFIX,bybit.biz                  # 以下为备用/轮换域（社区抓包，建议自行验证）
-  - DOMAIN-SUFFIX,bybdc6.com
-  - DOMAIN-SUFFIX,byabcde.com
-  - DOMAIN-SUFFIX,byapps.net
-  - DOMAIN-SUFFIX,byd3c3.com
 
   # ===== Bitget / Bitget Wallet =====
   - DOMAIN-SUFFIX,bitget.com                 # 交易所主域，含 web3.bitget.com 钱包
