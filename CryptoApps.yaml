@@ -1,0 +1,58 @@
+# ============================================================
+# NAME: CryptoApps
+# DESC: 自维护加密货币/交易类 App 分流规则集
+# TYPE: Mihomo / Clash 系 rule-provider
+# behavior: classical   <- 含 DOMAIN-KEYWORD 与 PROCESS-NAME，
+#                          不能改用 domain 行为
+# format: yaml
+#
+# 维护方法：
+#   1. 在 FLClash / Clash Verge 连接面板观察目标 App 的连接，
+#      凡未命中 💰 Crypto 组的域名，按下面格式追加；
+#   2. push 到 GitHub 后等客户端按 interval 拉取，或手动更新规则集；
+#   3. 条目类型选择：DOMAIN 精确匹配单个域名；
+#      DOMAIN-SUFFIX 匹配该域及全部子域（首选）；
+#      DOMAIN-KEYWORD 子串匹配，误伤面大，慎加。
+#   4. 同一文件内规则按书写顺序匹配，进程规则放最前。
+# ============================================================
+payload:
+  # ===== 进程规则（安卓按包名命中，其它平台自动跳过） =====
+  - PROCESS-NAME,com.binance.dev             # 币安
+  - PROCESS-NAME,com.bitkeep.wallet          # Bitget Wallet（原 BitKeep）
+  - PROCESS-NAME,com.bybit.app               # Bybit
+  - PROCESS-NAME,com.kraken.invest.app       # Kraken
+  - PROCESS-NAME,com.timonemobile            # Timon
+  - PROCESS-NAME,to.plasma.one.application   # Plasma One
+
+  # ===== Binance 币安 =====
+  - DOMAIN-KEYWORD,binance                   # 覆盖 binance.com/.us 及 binancezh.* 等全部镜像域
+  - DOMAIN-SUFFIX,bnbstatic.com              # 静态资源 CDN
+  - DOMAIN-SUFFIX,bntrace.com
+  - DOMAIN-SUFFIX,saasexch.com               # 币安 SaaS 经纪商域
+  - DOMAIN-SUFFIX,bnbzh.ac                   # 以下为中文备用域
+  - DOMAIN-SUFFIX,bnappzh.co
+  - DOMAIN-SUFFIX,bnappzh.com
+  - DOMAIN-SUFFIX,bnappzh.mobi
+
+  # ===== Bybit =====
+  - DOMAIN-SUFFIX,bybit.com                  # 主域
+  - DOMAIN-SUFFIX,bybit-aws.com              # App 埋点/监控域（社区抓包）
+  - DOMAIN-SUFFIX,bybit.biz                  # 以下为备用/轮换域（社区抓包，建议自行验证）
+  - DOMAIN-SUFFIX,bybdc6.com
+  - DOMAIN-SUFFIX,byabcde.com
+  - DOMAIN-SUFFIX,byapps.net
+  - DOMAIN-SUFFIX,byd3c3.com
+
+  # ===== Bitget / Bitget Wallet =====
+  - DOMAIN-SUFFIX,bitget.com                 # 交易所主域，含 web3.bitget.com 钱包
+  - DOMAIN-SUFFIX,bitkeep.com                # 原 BitKeep 遗留域
+
+  # ===== Kraken =====
+  - DOMAIN-SUFFIX,kraken.com                 # 含 futures.kraken.com 等子域
+
+  # ===== Timon =====
+  - DOMAIN-SUFFIX,usetimon.com               # UseTimon 官方域
+
+  # ===== Plasma One =====
+  - DOMAIN-SUFFIX,plasma.to                  # Plasma 链主域（含 one.plasma.to）
+  - DOMAIN-SUFFIX,plasma.org                 # Plasma One 官网/服务
