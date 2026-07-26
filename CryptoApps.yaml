@@ -20,7 +20,8 @@ payload:
   - PROCESS-NAME,com.binance.dev             # 币安
   - PROCESS-NAME,com.bitkeep.wallet          # Bitget Wallet（原 BitKeep）
   - PROCESS-NAME,com.bybit.app               # Bybit
-  - PROCESS-NAME,com.kraken.invest.app       # Kraken
+  - PROCESS-NAME,com.kraken.invest.app       # Kraken 交易所 App
+  - PROCESS-NAME,com.kraken.pay.app          # Krak（Kraken 旗下收付款/理财 App）
   - PROCESS-NAME,com.timonemobile            # Timon
   - PROCESS-NAME,to.plasma.one.application   # Plasma One
 
@@ -43,7 +44,7 @@ payload:
   - DOMAIN-SUFFIX,bitkeep.com                # 原 BitKeep 遗留域
 
   # ===== Kraken =====
-  - DOMAIN-SUFFIX,kraken.com                 # 含 futures.kraken.com 等子域
+  - DOMAIN-SUFFIX,kraken.com                 # 含 futures.kraken.com、support.kraken.com 及 Krak 的落地页/帮助中心
 
   # ===== Timon =====
   - DOMAIN-SUFFIX,usetimon.com               # UseTimon 官方域
