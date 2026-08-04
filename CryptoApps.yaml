@@ -24,6 +24,7 @@ payload:
   - PROCESS-NAME,com.kraken.pay.app          # Krak（Kraken 旗下收付款/理财 App）
   - PROCESS-NAME,com.timonemobile            # Timon
   - PROCESS-NAME,to.plasma.one.application   # Plasma One
+  - PROCESS-NAME,etherfi.app                 # ether.fi Cash（安卓包名，Play Store id=etherfi.app）
 
   # ===== Binance 币安 =====
   - DOMAIN-KEYWORD,binance                   # 覆盖 binance.com/.us 及 binancezh.* 等全部镜像域
@@ -52,3 +53,7 @@ payload:
   # ===== Plasma One =====
   - DOMAIN-SUFFIX,plasma.to                  # Plasma 链主域（含 one.plasma.to）
   - DOMAIN-SUFFIX,plasma.org                 # Plasma One 官网/服务
+  
+  # ===== ether.fi =====
+  - DOMAIN-SUFFIX,ether.fi                   # 主域一网打尽：www / app / api / help / vote / governance 等全部子域
+  - DOMAIN-SUFFIX,etherfi.gitbook.io         # 官方技术文档（可选，不看文档可省）
