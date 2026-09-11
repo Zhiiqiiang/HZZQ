@@ -14,6 +14,7 @@ payload:
   # ===== 进程规则（安卓按包名命中，其它平台自动跳过） =====
   - PROCESS-NAME,com.anytimemailbox.renter     # Anytime Mailbox 官方 App（抓包确认）
   - PROCESS-NAME,com.twitter.android           # X 官方 App（含内置 X Money / X Card 页面，无法按进程拆分）
+  - PROCESS-NAME,com.whatsapp                  # WhatsApp 安卓版；通话为裸 IP + UDP 无域名，必须靠进程规则接住
 
   # ===== Anytime Mailbox（美国虚拟邮箱） =====
   - DOMAIN-SUFFIX,anytimemailbox.com           # 主域，含 renter 门户及 API 子域
@@ -31,3 +32,14 @@ payload:
   - DOMAIN-SUFFIX,periscope.tv                 # 同上
   - DOMAIN-SUFFIX,twitter.jp                   # 日本区域名，偶有跳转
   - DOMAIN-SUFFIX,crossriver.com               # X Money 合作发卡/存款银行 Cross River Bank（KYC/入金链接可能跳转至此）
+
+  # ===== WhatsApp =====
+  # 账号风控对出口 IP 跨国跳变敏感（严重可封号），归口固定地区节点。
+  # 非安卓/非桌面版（浏览器网页版）的通话流量无域名可匹配，会落到后续 GEOIP/MATCH；
+  # 如需覆盖，可追加 Meta AS32934 的 IP-CIDR 段，但会连带 Facebook / Instagram 一起进本组，默认不加。
+  - DOMAIN-SUFFIX,whatsapp.com                 # 主站 / web.whatsapp.com / graph.whatsapp.com
+  - DOMAIN-SUFFIX,whatsapp.net                 # 消息长连接与媒体：g.whatsapp.net、mmg.whatsapp.net、pps.whatsapp.net、cdn.whatsapp.net
+  - DOMAIN-SUFFIX,wa.me                        # 短链
+  - DOMAIN-SUFFIX,whatsapp.biz                 # Business 相关
+  - DOMAIN-SUFFIX,whatsappbrand.com            # 品牌资源
+  - DOMAIN-KEYWORD,whatsapp                    # 兜底：捕获未列出的 whatsapp 子域/变体
