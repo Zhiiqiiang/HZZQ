@@ -14,9 +14,7 @@ payload:
   # ===== 进程规则（安卓按包名命中，其它平台自动跳过） =====
   - PROCESS-NAME,com.anytimemailbox.renter     # Anytime Mailbox 官方 App（抓包确认）
   - PROCESS-NAME,com.twitter.android           # X 官方 App（含内置 X Money / X Card 页面，无法按进程拆分）
-  - PROCESS-NAME,com.konylabs.capitalone       # Capital One Mobile 官方 App（Kony 框架构建，故包名带 konylabs）
-  - PROCESS-NAME,com.capitalone.travel.app     # Capital One Travel 独立 App（不用可删）
-  - PROCESS-NAME,com.discoverfinancial.mobile  # Discover Mobile 官方 App（信用卡 + Discover Bank 同一 App）
+  - PROCESS-NAME,com.whatsapp                  # WhatsApp 安卓版；通话为裸 IP + UDP 无域名，必须靠进程规则接住
 
   # ===== Anytime Mailbox（美国虚拟邮箱） =====
   - DOMAIN-SUFFIX,anytimemailbox.com           # 主域，含 renter 门户及 API 子域
@@ -35,28 +33,13 @@ payload:
   - DOMAIN-SUFFIX,twitter.jp                   # 日本区域名，偶有跳转
   - DOMAIN-SUFFIX,crossriver.com               # X Money 合作发卡/存款银行 Cross River Bank（KYC/入金链接可能跳转至此）
 
-  # ===== Capital One（美国银行 / 信用卡） =====
-  # 网页端与 App 后端同域：verified.(登录) / myaccounts.(账户) / api.(App 接口) /
-  # creditwise.(信用分) / eno.(助手) / smetrics.(埋点) 等均为 capitalone.com 子域，SUFFIX 一条全收。
-  - DOMAIN-SUFFIX,capitalone.com               # 美国主域，网页 + App 核心接口
-  - DOMAIN-SUFFIX,capitalone.ca                # 加拿大站（未验证，按需保留）
-  - DOMAIN-SUFFIX,capitalone.co.uk             # 英国站
-  - DOMAIN-SUFFIX,capitalonetravel.com         # Capital One Travel 订票门户（Hopper 技术），travel.capitalone.com 会跳转至此
-  - DOMAIN-SUFFIX,capitalonebooking.com        # Travel 订票/确认邮件链接域
-  - DOMAIN-SUFFIX,capitaloneshopping.com       # Capital One Shopping（返现/比价，原 Wikibuy）
-  - DOMAIN-SUFFIX,wikibuy.com                  # Shopping 旧域，浏览器扩展仍可能调用（未验证）
-  - DOMAIN-SUFFIX,capitalone360.com            # 原 ING Direct / 360 储蓄旧域，现为跳转
-  # - DOMAIN-SUFFIX,capitalonesoftware.com     # 企业软件产品线，个人用户不需要
-  # - DOMAIN-KEYWORD,capitalone                # 粗粒度兜底：抓不到的 capitalone* 域全收；副作用是 capitalonearena.com 之类无关域也会进来，按需启用
-
-  # ===== Discover（信用卡 / Discover Bank；2025 年起归 Capital One，但域名与 App 仍独立） =====
-  # 登录 portal.discover.com、卡账户 card.discover.com、银行 bank.discover.com、
-  # App 接口与 FICO 评分页均为 discover.com 子域，SUFFIX 一条全收。
-  # 注意：不要加 DOMAIN-KEYWORD,discover，会误收 Discovery+ 等无关域。
-  - DOMAIN-SUFFIX,discover.com                 # 主域，网页 + App 核心接口
-  - DOMAIN-SUFFIX,discovercard.com             # 旧域，营销/邮件链接仍在用，跳转到 discover.com（未验证）
-  - DOMAIN-SUFFIX,discoverglobalnetwork.com    # Discover Global Network 商户/网络侧，个人用户偶有跳转（未验证）
-  - DOMAIN-SUFFIX,pulsenetwork.com             # PULSE 借记卡网络（Discover 旗下），官方页面有跳转
-  # 下面两条只在你有 Diners Club 卡时启用：
-  # - DOMAIN-SUFFIX,dinersclub.com             # Diners Club International（未验证）
-  # - DOMAIN-SUFFIX,dinersclubus.com           # Diners Club 美国站（未验证）
+  # ===== WhatsApp =====
+  # 账号风控对出口 IP 跨国跳变敏感（严重可封号），归口固定地区节点。
+  # 非安卓/非桌面版（浏览器网页版）的通话流量无域名可匹配，会落到后续 GEOIP/MATCH；
+  # 如需覆盖，可追加 Meta AS32934 的 IP-CIDR 段，但会连带 Facebook / Instagram 一起进本组，默认不加。
+  - DOMAIN-SUFFIX,whatsapp.com                 # 主站 / web.whatsapp.com / graph.whatsapp.com
+  - DOMAIN-SUFFIX,whatsapp.net                 # 消息长连接与媒体：g.whatsapp.net、mmg.whatsapp.net、pps.whatsapp.net、cdn.whatsapp.net
+  - DOMAIN-SUFFIX,wa.me                        # 短链
+  - DOMAIN-SUFFIX,whatsapp.biz                 # Business 相关
+  - DOMAIN-SUFFIX,whatsappbrand.com            # 品牌资源
+  - DOMAIN-KEYWORD,whatsapp                    # 兜底：捕获未列出的 whatsapp 子域/变体
