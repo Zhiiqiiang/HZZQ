@@ -18,6 +18,8 @@ payload:
   - PROCESS-NAME,com.konylabs.capitalone       # Capital One Mobile 官方 App（Kony 框架构建，故包名带 konylabs）
   - PROCESS-NAME,com.capitalone.travel.app     # Capital One Travel 独立 App（不用可删）
   - PROCESS-NAME,com.discoverfinancial.mobile  # Discover Mobile 官方 App（信用卡 + Discover Bank 同一 App）
+  - PROCESS-NAME,com.kraken.invest.app         # Kraken 交易所 App
+  - PROCESS-NAME,com.kraken.pay.app            # Krak 支付/账户 App（Google Play 包名）
 
   # ===== Anytime Mailbox（美国虚拟邮箱） =====
   - DOMAIN-SUFFIX,anytimemailbox.com           # 主域，含 renter 门户及 API 子域
@@ -72,3 +74,10 @@ payload:
   # 下面两条只在你有 Diners Club 卡时启用：
   # - DOMAIN-SUFFIX,dinersclub.com             # Diners Club International（未验证）
   # - DOMAIN-SUFFIX,dinersclubus.com           # Diners Club 美国站（未验证）
+
+  # ===== Kraken / Krak =====
+  # Krak 是 Kraken 的独立支付 App，与 Kraken 共用账号体系与 kraken.com 后端，
+  # 域名层面无法拆分，两者归口同一组；进程规则仅在安卓上起区分作用。
+  - DOMAIN-SUFFIX,kraken.com                   # Kraken 主域，含 api./futures./www.kraken.com/krak/ 等
+  - DOMAIN-SUFFIX,krak.app                     # Krak 官网 + support.krak.app 帮助中心
+  - DOMAIN-SUFFIX,krak.com                     # 预留：品牌短域，抓到再确认，未命中不影响
