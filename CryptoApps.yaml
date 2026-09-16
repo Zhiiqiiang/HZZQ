@@ -18,6 +18,7 @@
 payload:
   # ===== 进程规则（安卓按包名命中，其它平台自动跳过） =====
   - PROCESS-NAME,com.binance.dev             # 币安
+  - PROCESS-NAME,com.okinc.okex.gp           # 欧易 OKX（安卓包名，Google Play/官网版同名）
   - PROCESS-NAME,com.bitkeep.wallet          # Bitget Wallet（原 BitKeep）
   - PROCESS-NAME,com.bybit.app               # Bybit
   - PROCESS-NAME,com.timonemobile            # Timon
@@ -33,6 +34,18 @@ payload:
   - DOMAIN-SUFFIX,bnappzh.co
   - DOMAIN-SUFFIX,bnappzh.com
   - DOMAIN-SUFFIX,bnappzh.mobi
+
+  # ===== OKX 欧易 =====
+  - DOMAIN-SUFFIX,okx.com                    # 主域，含 www/app/static/ws 等全部子域
+  - DOMAIN-SUFFIX,okex.com                   # 2022 改名前旧域，App 内仍有请求
+  - DOMAIN-SUFFIX,okcoin.com                 # 同集团 OKCoin
+  - DOMAIN-SUFFIX,oklink.com                 # 欧科云链浏览器，App 内链上查询/钱包用
+  - DOMAIN-SUFFIX,okx-dns.com                # App 内置域名解析/引导服务（社区抓包）
+  - DOMAIN-SUFFIX,okx-dns1.com               # 同上备份，必须与主域同出口，否则 App 会拿到国内镜像域自行跳走
+  - DOMAIN-SUFFIX,coinall.ltd                # 早期镜像/备用域（社区抓包）
+  - DOMAIN-SUFFIX,cnouyi.pizza               # 国内备用域（社区抓包，可能随时轮换）
+  - DOMAIN-SUFFIX,kjmte.com                  # 国内备用域（社区抓包，可能随时轮换）
+  - DOMAIN,d1w1p0smpsoh5j.cloudfront.net     # OKX 专用 CloudFront 分发（用 DOMAIN 精确匹配，避免误伤其它 cloudfront）
 
   # ===== Bybit =====
   - DOMAIN-SUFFIX,bybit.com                  # 主域
