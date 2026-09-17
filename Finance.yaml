@@ -21,6 +21,7 @@ payload:
   - PROCESS-NAME,com.kraken.invest.app         # Kraken 交易所 App
   - PROCESS-NAME,com.kraken.trade              # Kraken Pro 交易 App
   - PROCESS-NAME,com.kraken.pay.app            # Krak 支付/账户 App（Google Play 包名）
+  - PROCESS-NAME,com.mychime.waveremit.app     # Sendwave 官方 App（包名沿用 Chime 时代，含全部第三方 SDK 流量）
 
   # ===== Anytime Mailbox（美国虚拟邮箱） =====
   - DOMAIN-SUFFIX,anytimemailbox.com           # 主域，含 renter 门户及 API 子域
@@ -82,3 +83,8 @@ payload:
   - DOMAIN-SUFFIX,kraken.com                   # Kraken 主域，含 pro./api./ws./futures./www.kraken.com/krak/ 等
   - DOMAIN-SUFFIX,krak.app                     # Krak 官网 + support.krak.app 帮助中心
   - DOMAIN-SUFFIX,krak.com                     # 预留：品牌短域，抓到再确认，未命中不影响
+
+  # ===== Sendwave（Zepz 旗下跨境汇款，前身 Chime Inc. / Wave） =====
+  # 安卓端已由进程规则整体接管，本段主要服务 iOS / 网页端；
+  # 若面板抓到 wave.com / zepz.io 请求再按需补充，wave.com 现属 Wave Mobile Money，不要预先收入。
+  - DOMAIN-SUFFIX,sendwave.com                 # 主域，官网 / app 接口 / contact 门户；子域一并覆盖
