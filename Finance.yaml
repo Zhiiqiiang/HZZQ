@@ -77,8 +77,8 @@ payload:
   # - DOMAIN-SUFFIX,dinersclubus.com           # Diners Club 美国站（未验证）
 
   # ===== Kraken / Kraken Pro / Krak =====
-  # Krak 是 Kraken 的独立支付 App，与 Kraken 共用账号体系与 kraken.com 后端，
-  # 域名层面无法拆分，两者归口同一组；进程规则仅在安卓上起区分作用。
-  - DOMAIN-SUFFIX,kraken.com                   # Kraken 主域，含 api./futures./www.kraken.com/krak/ 等
+  # Kraken Pro（pro.kraken.com）与 Krak 均与 Kraken 共用账号体系和 kraken.com 后端，
+  # 域名层面无法拆分，三者归口同一组；进程规则仅在安卓上起区分作用。
+  - DOMAIN-SUFFIX,kraken.com                   # Kraken 主域，含 pro./api./ws./futures./www.kraken.com/krak/ 等
   - DOMAIN-SUFFIX,krak.app                     # Krak 官网 + support.krak.app 帮助中心
   - DOMAIN-SUFFIX,krak.com                     # 预留：品牌短域，抓到再确认，未命中不影响
