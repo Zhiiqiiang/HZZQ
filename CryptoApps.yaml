@@ -24,6 +24,7 @@ payload:
   - PROCESS-NAME,com.timonemobile            # Timon
   - PROCESS-NAME,to.plasma.one.application   # Plasma One
   - PROCESS-NAME,etherfi.app                 # ether.fi Cash（安卓包名，Play Store id=etherfi.app）
+  - PROCESS-NAME,com.mexcpro.client          # MEXC
 
   # ===== Binance 币安 =====
   - DOMAIN-KEYWORD,binance                   # 覆盖 binance.com/.us 及 binancezh.* 等全部镜像域
@@ -65,3 +66,13 @@ payload:
   # ===== ether.fi =====
   - DOMAIN-SUFFIX,ether.fi                   # 主域一网打尽：www / app / api / help / vote / governance 等全部子域
   - DOMAIN-SUFFIX,etherfi.gitbook.io         # 官方技术文档（可选，不看文档可省）
+
+  # ===== MEXC 抹茶 =====
+  - DOMAIN-SUFFIX,mexc.com                   # 主域，含 api./wbs-api./futures./contract. 等子域
+  - DOMAIN-SUFFIX,mexc.co                    # 官方备用域
+  - DOMAIN-SUFFIX,mexc.sg                    # 官方备用域
+  - DOMAIN-SUFFIX,mexc.fm                    # 官方备用域（运营方 MEXC，SG 机房）
+  - DOMAIN-SUFFIX,mexc.la                    # 官方备用域
+  - DOMAIN-SUFFIX,mexc.link                  # 官方短链/跳转域
+  - DOMAIN-SUFFIX,mxc.com                    # 旧品牌 MXC 遗留域，仍有跳转
+  - DOMAIN-SUFFIX,mxc.co                     # 同上
