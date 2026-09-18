@@ -22,6 +22,7 @@ payload:
   - PROCESS-NAME,com.kraken.trade              # Kraken Pro 交易 App
   - PROCESS-NAME,com.kraken.pay.app            # Krak 支付/账户 App（Google Play 包名）
   - PROCESS-NAME,com.mychime.waveremit.app     # Sendwave 官方 App（包名沿用 Chime 时代，含全部第三方 SDK 流量）
+  - PROCESS-NAME,com.sofi.mobile               # SoFi 官方 App（安卓包名；进程规则优先兜住 App 全部流量）
 
   # ===== Anytime Mailbox（美国虚拟邮箱） =====
   - DOMAIN-SUFFIX,anytimemailbox.com           # 主域，含 renter 门户及 API 子域
@@ -88,3 +89,11 @@ payload:
   # 安卓端已由进程规则整体接管，本段主要服务 iOS / 网页端；
   # 若面板抓到 wave.com / zepz.io 请求再按需补充，wave.com 现属 Wave Mobile Money，不要预先收入。
   - DOMAIN-SUFFIX,sendwave.com                 # 主域，官网 / app 接口 / contact 门户；子域一并覆盖
+
+  # ===== SoFi（美国数字银行 / 券商） =====
+  # 安卓端已由上面的 PROCESS-NAME 整体命中，本段主要覆盖网页端、iOS、PC 及 App 外跳转。
+  # SoFi 为美国持牌银行，风控对出口 IP 归属地敏感；本集所指策略组建议固定单一美国节点。
+  - DOMAIN-SUFFIX,sofi.com                      # 主域，含 www / my / api / auth 等子域（App 与网页接口主要落点）
+  - DOMAIN-SUFFIX,galileo-ft.com                # Galileo（SoFi 子公司）借记卡/账户处理平台，卡管理与交易页面可能跳转至此
+  - DOMAIN-SUFFIX,apexclearing.com              # Apex Clearing，SoFi Invest 清算方，对账单 / 税表 / 转户链接可能落到此域
+  - DOMAIN-SUFFIX,apexfintechsolutions.com      # Apex 母公司域，同上
