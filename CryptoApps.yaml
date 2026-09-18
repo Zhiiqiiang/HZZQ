@@ -25,6 +25,7 @@ payload:
   - PROCESS-NAME,to.plasma.one.application   # Plasma One
   - PROCESS-NAME,etherfi.app                 # ether.fi Cash（安卓包名，Play Store id=etherfi.app）
   - PROCESS-NAME,com.mexcpro.client          # MEXC
+  - PROCESS-NAME,money.boku.android          # Neverless（Boku Labs Ltd）
 
   # ===== Binance 币安 =====
   - DOMAIN-KEYWORD,binance                   # 覆盖 binance.com/.us 及 binancezh.* 等全部镜像域
@@ -76,3 +77,6 @@ payload:
   - DOMAIN-SUFFIX,mexc.link                  # 官方短链/跳转域
   - DOMAIN-SUFFIX,mxc.com                    # 旧品牌 MXC 遗留域，仍有跳转
   - DOMAIN-SUFFIX,mxc.co                     # 同上
+
+  # ===== Neverless =====
+  - DOMAIN-SUFFIX,neverless.com              # 主域，含 app/api 子域
