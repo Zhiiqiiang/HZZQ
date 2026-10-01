@@ -23,6 +23,9 @@ payload:
   - PROCESS-NAME,com.kraken.pay.app            # Krak 支付/账户 App（Google Play 包名）
   - PROCESS-NAME,com.mychime.waveremit.app     # Sendwave 官方 App（包名沿用 Chime 时代，含全部第三方 SDK 流量）
   - PROCESS-NAME,com.sofi.mobile               # SoFi 官方 App（安卓包名；进程规则优先兜住 App 全部流量）
+  - PROCESS-NAME,com.equifax.myequifax         # myEquifax 官方 App（美国征信）
+  - PROCESS-NAME,com.revolut.revolut           # Revolut 官方 App
+  - PROCESS-NAME,com.coinbase.android          # Coinbase 官方 App（交易所主 App，不含 Coinbase Wallet）
 
   # ===== Anytime Mailbox（美国虚拟邮箱） =====
   - DOMAIN-SUFFIX,anytimemailbox.com           # 主域，含 renter 门户及 API 子域
@@ -97,3 +100,16 @@ payload:
   - DOMAIN-SUFFIX,galileo-ft.com                # Galileo（SoFi 子公司）借记卡/账户处理平台，卡管理与交易页面可能跳转至此
   - DOMAIN-SUFFIX,apexclearing.com              # Apex Clearing，SoFi Invest 清算方，对账单 / 税表 / 转户链接可能落到此域
   - DOMAIN-SUFFIX,apexfintechsolutions.com      # Apex 母公司域，同上
+
+  # ===== Equifax（美国征信 / myEquifax） =====
+  - DOMAIN-SUFFIX,equifax.com                  # 主域，含 my.equifax.com 门户及 App API
+  # - DOMAIN-SUFFIX,online-metrix.net          # LexisNexis ThreatMetrix 设备指纹（多家金融机构共用，见下方说明，按需启用）
+
+  # ===== Revolut =====
+  - DOMAIN-SUFFIX,revolut.com                  # 主域，含 cdn / assets / help / business 等子域
+  - DOMAIN-SUFFIX,revolut.me                   # 个人收款链接域（revolut.me/用户名）
+
+  # ===== Coinbase =====
+  - DOMAIN-SUFFIX,coinbase.com                 # 主域，含 api / login / sessions / graphql / wallet 等子域
+  - DOMAIN-SUFFIX,cb-device-intelligence.com   # 设备指纹/风控采集域；漏掉会导致指纹上报和 API 出口 IP 不一致
+  # - DOMAIN-SUFFIX,cbhq.net                   # Coinbase 内部基础设施域（未核实，抓包见到再启用）
