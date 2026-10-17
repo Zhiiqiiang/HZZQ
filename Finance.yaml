@@ -26,6 +26,7 @@ payload:
   - PROCESS-NAME,com.equifax.myequifax         # myEquifax 官方 App（美国征信）
   - PROCESS-NAME,com.revolut.revolut           # Revolut 官方 App
   - PROCESS-NAME,com.coinbase.android          # Coinbase 官方 App（交易所主 App，不含 Coinbase Wallet）
+  - PROCESS-NAME,atws.app                      # IBKR Mobile 安卓包名；整个 App 的流量（含第三方 SDK、纯 IP 连接）统一归口
 
   # ===== Anytime Mailbox（美国虚拟邮箱） =====
   - DOMAIN-SUFFIX,anytimemailbox.com           # 主域，含 renter 门户及 API 子域
@@ -113,3 +114,17 @@ payload:
   - DOMAIN-SUFFIX,coinbase.com                 # 主域，含 api / login / sessions / graphql / wallet 等子域
   - DOMAIN-SUFFIX,cb-device-intelligence.com   # 设备指纹/风控采集域；漏掉会导致指纹上报和 API 出口 IP 不一致
   # - DOMAIN-SUFFIX,cbhq.net                   # Coinbase 内部基础设施域（未核实，抓包见到再启用）
+
+  # ===== Interactive Brokers (IBKR) =====
+  # 主机来源：IBKR 官方 KB「Host and Ports」防火墙放行清单
+  # 注意：TWS / IB Gateway 交易连接走 4000/4001 端口，不在 sniffer 嗅探端口内，
+  #       依赖 fake-ip 反查域名才能命中下列规则（TUN + fake-ip 下没问题）。
+  - DOMAIN-KEYWORD,interactivebrokers          # 覆盖全部地区官网：.com/.ca/.co.uk/.co.in/.co.jp/.com.hk/.com.au/.com.sg 等，
+                                               # 含 gdcdyn/cdcdyn/download/download2/risk/wit1 等子域；地区站点太多，用关键字兜全
+  - DOMAIN-SUFFIX,ibkr.com                     # 短域名，www / Client Portal / Web API(api.ibkr.com) 等
+  - DOMAIN-SUFFIX,ibllc.com                    # TWS 交易网关：ndc1/cdc1/zdc1/hdc1 及其 _hb1 心跳主机
+  - DOMAIN-SUFFIX,ibkr.com.cn                  # 中国区官网（注意 ibkr.com 后缀匹配不到 .com.cn，需单列）
+  - DOMAIN-SUFFIX,ibllc.com.cn                 # 中国区网关 mcgw1 / mcgw1_hb1
+  - DOMAIN-SUFFIX,ibkrcampus.com               # 学习/资讯站，非账户敏感，收进来保持出口一致
+  - DOMAIN-SUFFIX,ibkrguides.com               # 官方使用手册
+  # 刻意未收：s3.amazonaws.com（官方清单里有，用于下载/更新，但这是整个 S3，收进来会误伤大量无关流量）
