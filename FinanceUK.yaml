@@ -1,0 +1,22 @@
+# ============================================================
+# NAME: Finance
+# DESC: 自维护金融/账务类分流规则集（银行、券商等杂项归口）
+# TYPE: Mihomo / Clash 系 rule-provider
+# behavior: classical  <- 含 PROCESS-NAME，不能改用 domain 行为
+# format: yaml
+#
+# 维护方法：
+#   连接面板观察未命中目标策略组的域名，按格式追加后 push。
+#   注意：金融类服务风控普遍对出口 IP 归属地和跳变敏感，
+#   本集指向的策略组应固定单一地区节点，不要用自动切换组。
+# ============================================================
+payload:
+  # ===== 进程规则（安卓按包名命中，其它平台自动跳过） =====
+  - PROCESS-NAME,com.coinbase.android          # Coinbase 官方 App（交易所主 App，不含 Coinbase Wallet）
+  - PROCESS-NAME,atws.app                      # IBKR Mobile 安卓包名；整个 App 的流量（含第三方 SDK、纯 IP 连接）统一归口
+  - PROCESS-NAME,com.schwab.mobile             # Charles Schwab 嘉信官方 App（安卓包名）
+
+  # ===== Anytime Mailbox（美国虚拟邮箱） =====
+  - DOMAIN-SUFFIX,anytimemailbox.com           # 主域，含 renter 门户及 API 子域
+
+  
