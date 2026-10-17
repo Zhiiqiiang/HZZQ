@@ -27,6 +27,7 @@ payload:
   - PROCESS-NAME,com.revolut.revolut           # Revolut 官方 App
   - PROCESS-NAME,com.coinbase.android          # Coinbase 官方 App（交易所主 App，不含 Coinbase Wallet）
   - PROCESS-NAME,atws.app                      # IBKR Mobile 安卓包名；整个 App 的流量（含第三方 SDK、纯 IP 连接）统一归口
+  - PROCESS-NAME,com.schwab.mobile             # Charles Schwab 嘉信官方 App（安卓包名）
 
   # ===== Anytime Mailbox（美国虚拟邮箱） =====
   - DOMAIN-SUFFIX,anytimemailbox.com           # 主域，含 renter 门户及 API 子域
@@ -128,3 +129,15 @@ payload:
   - DOMAIN-SUFFIX,ibkrcampus.com               # 学习/资讯站，非账户敏感，收进来保持出口一致
   - DOMAIN-SUFFIX,ibkrguides.com               # 官方使用手册
   # 刻意未收：s3.amazonaws.com（官方清单里有，用于下载/更新，但这是整个 S3，收进来会误伤大量无关流量）
+
+  # ===== Charles Schwab 嘉信理财 =====
+  # 安卓 App 已由上方 PROCESS-NAME 整体兜住（含其内嵌的 Firebase / 统计 / 第三方 SDK 流量）；
+  # 以下域名规则用于 PC 浏览器、iOS 迁移、以及其它 App 内跳转到嘉信页面的场景。
+  - DOMAIN-SUFFIX,schwab.com                   # 主域：www / client（网页登录）/ 移动 API / 中文服务页均在其下
+  - DOMAIN-SUFFIX,schwabapi.com                # 官方 Trader API（api.schwabapi.com），第三方工具与 OAuth 回调走这里
+  - DOMAIN-SUFFIX,schwab.net                   # Netify 归属嘉信，具体用途未确认，按归属收录
+  - DOMAIN-SUFFIX,schwab.com.hk                # 香港站（上游 broker-rules 收录）
+  - DOMAIN-SUFFIX,schwab.com.cn                # 中国站（上游 broker-rules 收录）
+  - DOMAIN-SUFFIX,schwab.co.uk                 # 英国站（上游 broker-rules 收录）
+  - DOMAIN-SUFFIX,thinkorswim.com              # thinkorswim 网页版 / 桌面端下载与登录
+  - DOMAIN-SUFFIX,tdameritrade.com             # TD Ameritrade 旧域，迁移后仍会 301 到 schwab.com，留着避免跳转首跳出口不一致
