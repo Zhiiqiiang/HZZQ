@@ -28,6 +28,7 @@ payload:
   - PROCESS-NAME,money.boku.android          # Neverless（Boku Labs Ltd）
   - PROCESS-NAME,money.pulsar.app            # Pulsar Money
   - PROCESS-NAME,com.lavamobile              # Lava: Bitcoin Loans & Card（Lava Global Inc.，美国）安卓包名
+  - PROCESS-NAME,com.tuyo.mobile.android     # Tuyo（安卓）
 
   # ===== Binance 币安 =====
   - DOMAIN-KEYWORD,binance                   # 覆盖 binance.com/.us 及 binancezh.* 等全部镜像域
@@ -88,3 +89,6 @@ payload:
 
   # ===== Lava（lava.xyz，比特币抵押贷款 / Lava Card） =====
   - DOMAIN-SUFFIX,lava.xyz                   # 主域：官网、Web 端、FAQ、blog 及 App API
+
+  # ===== Tuyo =====
+  - DOMAIN-SUFFIX,tuyo.com                   # 主域，含 get.tuyo.com 邀请页、mcp.tuyo.com 等子域
