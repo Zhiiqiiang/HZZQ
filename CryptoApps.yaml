@@ -87,4 +87,4 @@ payload:
   - DOMAIN-SUFFIX,pulsar.money               # 官方主域，含 app. / beta. / docs. / API 子域
 
   # ===== Lava（lava.xyz，比特币抵押贷款 / Lava Card） =====
-  - DOMAIN-SUFFIX,lava.xyz                     # 主域：官网、Web 端、FAQ、blog 及 App API
+  - DOMAIN-SUFFIX,lava.xyz                   # 主域：官网、Web 端、FAQ、blog 及 App API
