@@ -13,10 +13,7 @@
 payload:
   # ===== 进程规则（安卓按包名命中，其它平台自动跳过） =====
   - PROCESS-NAME,com.ria.moneytransfer         # Ria Money Transfer 官方 App（安卓包名）；含 KYC/风控 SDK、纯 IP 连接统一归口
-  - PROCESS-NAME,com.lavamobile                # Lava: Bitcoin Loans & Card（Lava Global Inc.，美国）安卓包名
 
   # ===== Ria Money Transfer（Euronet 旗下国际汇款） =====
   - DOMAIN-SUFFIX,riamoneytransfer.com         # 主域：www / www3 / app3 等官网、Web 汇款、App API 均在其下
 
-  # ===== Lava（lava.xyz，比特币抵押贷款 / Lava Card） =====
-  - DOMAIN-SUFFIX,lava.xyz                     # 主域：官网、Web 端、FAQ、blog 及 App API
