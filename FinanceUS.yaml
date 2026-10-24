@@ -28,6 +28,7 @@ payload:
   - PROCESS-NAME,com.coinbase.android          # Coinbase 官方 App（交易所主 App，不含 Coinbase Wallet）
   - PROCESS-NAME,atws.app                      # IBKR Mobile 安卓包名；整个 App 的流量（含第三方 SDK、纯 IP 连接）统一归口
   - PROCESS-NAME,com.schwab.mobile             # Charles Schwab 嘉信官方 App（安卓包名）
+  - PROCESS-NAME,com.majority.android          # MAJORITY: Mobile banking 官方 App（安卓包名；含内嵌客服 SDK / 国际通话等全部流量）
 
   # ===== Anytime Mailbox（美国虚拟邮箱） =====
   - DOMAIN-SUFFIX,anytimemailbox.com           # 主域，含 renter 门户及 API 子域
@@ -141,3 +142,13 @@ payload:
   - DOMAIN-SUFFIX,schwab.co.uk                 # 英国站（上游 broker-rules 收录）
   - DOMAIN-SUFFIX,thinkorswim.com              # thinkorswim 网页版 / 桌面端下载与登录
   - DOMAIN-SUFFIX,tdameritrade.com             # TD Ameritrade 旧域，迁移后仍会 301 到 schwab.com，留着避免跳转首跳出口不一致
+
+  # ===== MAJORITY（面向移民的美国移动银行，Majority USA, LLC） =====
+  # 安卓端已由上方 PROCESS-NAME 整体接管，本段主要服务 iOS / 网页端及 App 外跳转。
+  # 账户与 Visa 借记卡由 Axiom Bank, N.A. 承载，开户 KYC 仅凭护照，风控对出口 IP 归属地敏感，
+  # 本集所指策略组应固定单一美国节点。
+  - DOMAIN-SUFFIX,majority.com                 # 主域：官网 / 会员页 / App 接口子域一并覆盖
+  - DOMAIN-SUFFIX,axiombanking.com             # 发卡行 Axiom Bank 官网，条款/披露链接可能跳转至此（未验证 App 是否直连）
+  # 刻意未收：intercom.help（帮助中心挂在 intercom.help/MAJORITY_HelpCenter，按路径区分，
+  #           收后缀会把所有用 Intercom 托管帮助中心的网站一起拉进本组）
+  # - DOMAIN-SUFFIX,intercom.io                # Intercom 客服 SDK 接口；iOS 端若要保证客服聊天出口一致可启用，代价同上，默认不加
