@@ -26,6 +26,7 @@ payload:
   - PROCESS-NAME,com.equifax.myequifax         # myEquifax 官方 App（美国征信）
   - PROCESS-NAME,com.revolut.revolut           # Revolut 官方 App
   - PROCESS-NAME,com.coinbase.android          # Coinbase 官方 App（交易所主 App，不含 Coinbase Wallet）
+  - PROCESS-NAME,org.toshi                     # Coinbase Wallet 自托管钱包（前身 Toshi；2025-07~2026-09 曾名 Base App，包名始终不变）
   - PROCESS-NAME,atws.app                      # IBKR Mobile 安卓包名；整个 App 的流量（含第三方 SDK、纯 IP 连接）统一归口
   - PROCESS-NAME,com.schwab.mobile             # Charles Schwab 嘉信官方 App（安卓包名）
   - PROCESS-NAME,com.majority.android          # MAJORITY: Mobile banking 官方 App（安卓包名；含内嵌客服 SDK / 国际通话等全部流量）
@@ -112,10 +113,15 @@ payload:
   - DOMAIN-SUFFIX,revolut.com                  # 主域，含 cdn / assets / help / business 等子域
   - DOMAIN-SUFFIX,revolut.me                   # 个人收款链接域（revolut.me/用户名）
 
-  # ===== Coinbase =====
-  - DOMAIN-SUFFIX,coinbase.com                 # 主域，含 api / login / sessions / graphql / wallet 等子域
+  # ===== Coinbase / Coinbase Wallet =====
+  # 交易所与 Coinbase Wallet 共用 coinbase.com 后端：wallet.（钱包网页版）/ keys.（Smart Wallet 签名弹窗）/
+  # api.（App 接口）/ login.（关联 Coinbase 账户、Onramp 入金）均为其子域，SUFFIX 一条已全收，无需另列。
+  # 安卓端两个 App 均由上方进程规则整体接管；本段主要覆盖 iOS / PC 浏览器 / 钱包浏览器扩展。
+  - DOMAIN-SUFFIX,coinbase.com                 # 主域，含 api / login / sessions / graphql / wallet / keys 等子域
   - DOMAIN-SUFFIX,cb-device-intelligence.com   # 设备指纹/风控采集域；漏掉会导致指纹上报和 API 出口 IP 不一致
-  # - DOMAIN-SUFFIX,cbhq.net                   # Coinbase 内部基础设施域（未核实，抓包见到再启用）
+  - DOMAIN-SUFFIX,cb-w.com                     # Coinbase Wallet 通用链接域（go.cb-w.com/dapp?cb_url=...），dApp 唤起钱包的首跳（官方文档）
+  - DOMAIN-SUFFIX,walletlink.org               # Wallet SDK 前身 WalletLink 的桥接域，旧版 dApp 扫码连接可能仍调用（未核实，按历史收录）
+  - DOMAIN-SUFFIX,base.app                     # Base App 时期产品域（主页/分享链接），改回 Wallet 后是否仍在用未核实
 
   # ===== Interactive Brokers (IBKR) =====
   # 主机来源：IBKR 官方 KB「Host and Ports」防火墙放行清单
