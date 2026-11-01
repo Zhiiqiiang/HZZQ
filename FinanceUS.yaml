@@ -11,6 +11,10 @@
 #   本集指向的策略组应固定单一地区节点，不要用自动切换组。
 # ============================================================
 payload:
+  # ===== 其他美区分流进程规则（安卓按包名命中，其它平台自动跳过） =====
+  - PROCESS-NAME,com.openai.chatgpt            # chatgpt
+  - PROCESS-NAME,com.facebook.aura             # muse
+  
   # ===== 进程规则（安卓按包名命中，其它平台自动跳过） =====
   - PROCESS-NAME,com.anytimemailbox.renter     # Anytime Mailbox 官方 App（抓包确认）
   - PROCESS-NAME,com.twitter.android           # X 官方 App（含内置 X Money / X Card 页面，无法按进程拆分）
