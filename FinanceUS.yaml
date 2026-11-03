@@ -34,6 +34,7 @@ payload:
   - PROCESS-NAME,atws.app                      # IBKR Mobile 安卓包名；整个 App 的流量（含第三方 SDK、纯 IP 连接）统一归口
   - PROCESS-NAME,com.schwab.mobile             # Charles Schwab 嘉信官方 App（安卓包名）
   - PROCESS-NAME,com.majority.android          # MAJORITY: Mobile banking 官方 App（安卓包名；含内嵌客服 SDK / 国际通话等全部流量）
+  - PROCESS-NAME,com.remitly.androidapp        # Remitly 官方 App（安卓包名；含 KYC SDK / 埋点 / 纯 IP 连接整体归口）
 
   # ===== Anytime Mailbox（美国虚拟邮箱） =====
   - DOMAIN-SUFFIX,anytimemailbox.com           # 主域，含 renter 门户及 API 子域
@@ -74,8 +75,6 @@ payload:
   - DOMAIN-SUFFIX,capitaloneshopping.com       # Capital One Shopping（返现/比价，原 Wikibuy）
   - DOMAIN-SUFFIX,wikibuy.com                  # Shopping 旧域，浏览器扩展仍可能调用（未验证）
   - DOMAIN-SUFFIX,capitalone360.com            # 原 ING Direct / 360 储蓄旧域，现为跳转
-  # - DOMAIN-SUFFIX,capitalonesoftware.com     # 企业软件产品线，个人用户不需要
-  # - DOMAIN-KEYWORD,capitalone                # 粗粒度兜底：抓不到的 capitalone* 域全收；副作用是 capitalonearena.com 之类无关域也会进来，按需启用
 
   # ===== Discover（信用卡 / Discover Bank；2025 年起归 Capital One，但域名与 App 仍独立） =====
   # 登录 portal.discover.com、卡账户 card.discover.com、银行 bank.discover.com、
@@ -85,9 +84,6 @@ payload:
   - DOMAIN-SUFFIX,discovercard.com             # 旧域，营销/邮件链接仍在用，跳转到 discover.com（未验证）
   - DOMAIN-SUFFIX,discoverglobalnetwork.com    # Discover Global Network 商户/网络侧，个人用户偶有跳转（未验证）
   - DOMAIN-SUFFIX,pulsenetwork.com             # PULSE 借记卡网络（Discover 旗下），官方页面有跳转
-  # 下面两条只在你有 Diners Club 卡时启用：
-  # - DOMAIN-SUFFIX,dinersclub.com             # Diners Club International（未验证）
-  # - DOMAIN-SUFFIX,dinersclubus.com           # Diners Club 美国站（未验证）
 
   # ===== Kraken / Kraken Pro / Krak =====
   # Kraken Pro（pro.kraken.com）与 Krak 均与 Kraken 共用账号体系和 kraken.com 后端，
@@ -97,13 +93,9 @@ payload:
   - DOMAIN-SUFFIX,krak.com                     # 预留：品牌短域，抓到再确认，未命中不影响
 
   # ===== Sendwave（Zepz 旗下跨境汇款，前身 Chime Inc. / Wave） =====
-  # 安卓端已由进程规则整体接管，本段主要服务 iOS / 网页端；
-  # 若面板抓到 wave.com / zepz.io 请求再按需补充，wave.com 现属 Wave Mobile Money，不要预先收入。
   - DOMAIN-SUFFIX,sendwave.com                 # 主域，官网 / app 接口 / contact 门户；子域一并覆盖
 
   # ===== SoFi（美国数字银行 / 券商） =====
-  # 安卓端已由上面的 PROCESS-NAME 整体命中，本段主要覆盖网页端、iOS、PC 及 App 外跳转。
-  # SoFi 为美国持牌银行，风控对出口 IP 归属地敏感；本集所指策略组建议固定单一美国节点。
   - DOMAIN-SUFFIX,sofi.com                      # 主域，含 www / my / api / auth 等子域（App 与网页接口主要落点）
   - DOMAIN-SUFFIX,galileo-ft.com                # Galileo（SoFi 子公司）借记卡/账户处理平台，卡管理与交易页面可能跳转至此
   - DOMAIN-SUFFIX,apexclearing.com              # Apex Clearing，SoFi Invest 清算方，对账单 / 税表 / 转户链接可能落到此域
@@ -111,7 +103,6 @@ payload:
 
   # ===== Equifax（美国征信 / myEquifax） =====
   - DOMAIN-SUFFIX,equifax.com                  # 主域，含 my.equifax.com 门户及 App API
-  # - DOMAIN-SUFFIX,online-metrix.net          # LexisNexis ThreatMetrix 设备指纹（多家金融机构共用，见下方说明，按需启用）
 
   # ===== Revolut =====
   - DOMAIN-SUFFIX,revolut.com                  # 主域，含 cdn / assets / help / business 等子域
@@ -120,7 +111,6 @@ payload:
   # ===== Coinbase / Coinbase Wallet =====
   # 交易所与 Coinbase Wallet 共用 coinbase.com 后端：wallet.（钱包网页版）/ keys.（Smart Wallet 签名弹窗）/
   # api.（App 接口）/ login.（关联 Coinbase 账户、Onramp 入金）均为其子域，SUFFIX 一条已全收，无需另列。
-  # 安卓端两个 App 均由上方进程规则整体接管；本段主要覆盖 iOS / PC 浏览器 / 钱包浏览器扩展。
   - DOMAIN-SUFFIX,coinbase.com                 # 主域，含 api / login / sessions / graphql / wallet / keys 等子域
   - DOMAIN-SUFFIX,cb-device-intelligence.com   # 设备指纹/风控采集域；漏掉会导致指纹上报和 API 出口 IP 不一致
   - DOMAIN-SUFFIX,cb-w.com                     # Coinbase Wallet 通用链接域（go.cb-w.com/dapp?cb_url=...），dApp 唤起钱包的首跳（官方文档）
@@ -128,7 +118,6 @@ payload:
   - DOMAIN-SUFFIX,base.app                     # Base App 时期产品域（主页/分享链接），改回 Wallet 后是否仍在用未核实
 
   # ===== Interactive Brokers (IBKR) =====
-  # 主机来源：IBKR 官方 KB「Host and Ports」防火墙放行清单
   # 注意：TWS / IB Gateway 交易连接走 4000/4001 端口，不在 sniffer 嗅探端口内，
   #       依赖 fake-ip 反查域名才能命中下列规则（TUN + fake-ip 下没问题）。
   - DOMAIN-KEYWORD,interactivebrokers          # 覆盖全部地区官网：.com/.ca/.co.uk/.co.in/.co.jp/.com.hk/.com.au/.com.sg 等，
@@ -139,11 +128,8 @@ payload:
   - DOMAIN-SUFFIX,ibllc.com.cn                 # 中国区网关 mcgw1 / mcgw1_hb1
   - DOMAIN-SUFFIX,ibkrcampus.com               # 学习/资讯站，非账户敏感，收进来保持出口一致
   - DOMAIN-SUFFIX,ibkrguides.com               # 官方使用手册
-  # 刻意未收：s3.amazonaws.com（官方清单里有，用于下载/更新，但这是整个 S3，收进来会误伤大量无关流量）
 
   # ===== Charles Schwab 嘉信理财 =====
-  # 安卓 App 已由上方 PROCESS-NAME 整体兜住（含其内嵌的 Firebase / 统计 / 第三方 SDK 流量）；
-  # 以下域名规则用于 PC 浏览器、iOS 迁移、以及其它 App 内跳转到嘉信页面的场景。
   - DOMAIN-SUFFIX,schwab.com                   # 主域：www / client（网页登录）/ 移动 API / 中文服务页均在其下
   - DOMAIN-SUFFIX,schwabapi.com                # 官方 Trader API（api.schwabapi.com），第三方工具与 OAuth 回调走这里
   - DOMAIN-SUFFIX,schwab.net                   # Netify 归属嘉信，具体用途未确认，按归属收录
@@ -154,11 +140,9 @@ payload:
   - DOMAIN-SUFFIX,tdameritrade.com             # TD Ameritrade 旧域，迁移后仍会 301 到 schwab.com，留着避免跳转首跳出口不一致
 
   # ===== MAJORITY（面向移民的美国移动银行，Majority USA, LLC） =====
-  # 安卓端已由上方 PROCESS-NAME 整体接管，本段主要服务 iOS / 网页端及 App 外跳转。
-  # 账户与 Visa 借记卡由 Axiom Bank, N.A. 承载，开户 KYC 仅凭护照，风控对出口 IP 归属地敏感，
-  # 本集所指策略组应固定单一美国节点。
   - DOMAIN-SUFFIX,majority.com                 # 主域：官网 / 会员页 / App 接口子域一并覆盖
   - DOMAIN-SUFFIX,axiombanking.com             # 发卡行 Axiom Bank 官网，条款/披露链接可能跳转至此（未验证 App 是否直连）
-  # 刻意未收：intercom.help（帮助中心挂在 intercom.help/MAJORITY_HelpCenter，按路径区分，
-  #           收后缀会把所有用 Intercom 托管帮助中心的网站一起拉进本组）
-  # - DOMAIN-SUFFIX,intercom.io                # Intercom 客服 SDK 接口；iOS 端若要保证客服聊天出口一致可启用，代价同上，默认不加
+
+  # ===== Remitly（美国跨境汇款） =====
+  - DOMAIN-SUFFIX,remitly.com                  # 主域：www / help / developer / branch（App 深链）/ client-tls 及 KYC 回调子域
+  - DOMAIN-SUFFIX,remitly.io                   # 静态资源 / 图片 CDN（media.remitly.io），不收会掉到 cdn 规则，出口与主站不一致
