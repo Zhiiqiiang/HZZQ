@@ -35,6 +35,7 @@ payload:
   - PROCESS-NAME,com.schwab.mobile             # Charles Schwab 嘉信官方 App（安卓包名）
   - PROCESS-NAME,com.majority.android          # MAJORITY: Mobile banking 官方 App（安卓包名；含内嵌客服 SDK / 国际通话等全部流量）
   - PROCESS-NAME,com.remitly.androidapp        # Remitly 官方 App（安卓包名；含 KYC SDK / 埋点 / 纯 IP 连接整体归口）
+  - PROCESS-NAME,com.nu.production             # Nubank 官方 App（安卓包名）；进程规则兜住 App 全部流量（含第三方 SDK、纯 IP 连接）
 
   # ===== Anytime Mailbox（美国虚拟邮箱） =====
   - DOMAIN-SUFFIX,anytimemailbox.com           # 主域，含 renter 门户及 API 子域
@@ -146,3 +147,13 @@ payload:
   # ===== Remitly（美国跨境汇款） =====
   - DOMAIN-SUFFIX,remitly.com                  # 主域：www / help / developer / branch（App 深链）/ client-tls 及 KYC 回调子域
   - DOMAIN-SUFFIX,remitly.io                   # 静态资源 / 图片 CDN（media.remitly.io），不收会掉到 cdn 规则，出口与主站不一致
+
+  # ===== Nubank / Nu（巴西数字银行；墨西哥、哥伦比亚子公司同品牌） =====
+  # 网页版 conta.、API 入口 prod-s0-webapp-proxy.（/api/discovery 下发其余服务地址）、
+  # CDN cdn. 等均为 nubank.com.br 子域，SUFFIX 一条全收。
+  - DOMAIN-SUFFIX,nubank.com.br                # 巴西主域：官网 + App/网页 API + CDN + international. 集团站
+  - DOMAIN-SUFFIX,nu.com.mx                    # Nu México（墨西哥子公司）
+  - DOMAIN-SUFFIX,nu.com.co                    # Nu Colombia（哥伦比亚子公司）
+  - DOMAIN-SUFFIX,nu.com                       # 集团国际站（newsroom / blog.nu.com）；SUFFIX 按标签边界匹配，不会误收 menu.com 之类
+  - DOMAIN-SUFFIX,nuinternational.com          # 集团投资者关系站，非账户敏感，收进来保持出口一致
+  - DOMAIN-SUFFIX,nuinvest.com.br              # 原 NuInvest 券商域；独立 App 已停用、业务并入 Nubank App，旧链接/对账单仍可能落到此域（未验证）
